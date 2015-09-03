@@ -13,6 +13,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-date-picker/paper-date-picker.html">
 <link rel="import" href="../paper-button/paper-button.html">
 
+<script src="../moment/min/moment-with-locales.min.js"></script>
+
 <!--
 This element bind a [date-picker](https://github.com/bendavis78/paper-date-picker) to a paper-input through a paper-dialog.
 
@@ -40,7 +42,7 @@ Example:
       readonly
       on-tap="_openDatePicker" 
       label="[[label]]"
-      value="[[dateFormat(date, 'LL')]]">
+      value="[[dateFormat(date, format)]]">
     </paper-input>
   
     <paper-dialog id="datePickerDialog" modal class="paper-date-picker-dialog">
@@ -50,8 +52,8 @@ Example:
         minYear="[[minYear]]"
         maxYear="[[maxYear]]"
         responsiveWidth="[[responsiveWidth]]"
-        date="[[date]]"
-        forceNarrow="[[forceNarrow]]"></paper-date-picker>
+        date="[[date]]">
+      </paper-date-picker>
       <div class="buttons">
         <paper-button dialog-dismiss>Cancel</paper-button>
         <paper-button dialog-confirm aufo-focus on-tap="_closeDatePicker">OK</paper-button>
@@ -79,6 +81,17 @@ Example:
       date: {
         type: Date,
         notify: true
+      },
+
+      /**
+       * The input's value date format, cf. [momentjs](http://momentjs.com/)
+       * @attribute format
+       * @type String
+       * @default 'LL'
+       */
+      format: {
+        type: String,
+        value: 'LL'
       },
 
       /**
@@ -126,18 +139,7 @@ Example:
       },
 
       /**
-       * Force narrow layout
-       * @attribute forceNarrow
-       * @type boolean
-       * @default false
-       */
-      forceNarrow: {
-        type: Boolean,
-        value: false
-      },
-
-      /**
-       * The label for this input. Bind this to `<paper-input-container>`'s `label` property.
+       * The label for the paper-input.
        */
       label: {
         type: String,
@@ -146,8 +148,11 @@ Example:
 
     },
 
-    ready: function() {
-      this.dateFormat = this.$.datePicker.dateFormat;
+    dateFormat: function(date, format) {
+      if (!date) {
+        return '';
+      }
+      return moment(date).format(format);
     },
 
     _openDatePicker: function() {

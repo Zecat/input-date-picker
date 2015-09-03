@@ -18,26 +18,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </head>
 
   <style is="custom-style">
-    h4 {
+    h2,h4 {
       font-family: roboto;
-      text-align: center;
     }
     input-date-picker {
       width: 200px;
-      margin: auto;
     }
 
   </style>
 
   <body unresolved>
     <template is="dom-bind" id="scope">
+      <h4>Basic</h4>
+      <input-date-picker></input-date-picker>
+      <h4>With custom format and label</h4>
+      <input-date-picker label="Anniversary" format="L"></input-date-picker>
+      <h4>With default date and locale to 'fr'</h4>
+      <input-date-picker locale='fr' date="2015-3-09"></input-date-picker>
+      <h4>With data binding: <span>{{dateFormat(date, 'LL')}}</span></h4>
       <input-date-picker id="picker" date="{{date}}"></input-date-picker>
-      <h4>Selected date : <span>{{dateFormat(date, 'LL')}}</span></h4>
     </template>
      <script>
     document.addEventListener('WebComponentsReady', function() {
       var scope = Polymer.dom(document).querySelector('#scope');
       scope.dateFormat = scope.$.picker.dateFormat;
+      scope.date = new Date('2015-10-10');
     });
   </script>
   </body>
