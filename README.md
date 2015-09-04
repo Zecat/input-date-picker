@@ -12,7 +12,5 @@ See the [component page](http://zecat.github.io/input-date-picker) for more info
 
 #### TODO
 
-- add missing paper-input's attributes
+- add missing paper-date-picker's and paper-input's attributes
 - set pointer cursor on hover
-- add examples and style for demo
-- add a simple neon-animations on paper-dialog

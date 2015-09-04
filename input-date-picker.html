@@ -48,10 +48,7 @@ Example:
     <paper-dialog id="datePickerDialog" modal class="paper-date-picker-dialog">
       <paper-date-picker 
         id="datePicker" 
-        locale="[[locale]]" 
-        minYear="[[minYear]]"
-        maxYear="[[maxYear]]"
-        responsiveWidth="[[responsiveWidth]]"
+        locale="[[locale]]"
         date="[[date]]">
       </paper-date-picker>
       <div class="buttons">
@@ -95,47 +92,13 @@ Example:
       },
 
       /**
-       * Maximum screen width at which the picker uses a vertical layout
-       * @attribute responsiveWidth
-       * @type string
-       * @default '560px'
-       */
-      responsiveWidth: {
-        type: String,
-        value: '560px'
-      },
-
-      /**
        * The current locale
        * @attribute locale
        * @type string
        * @default 'en'
        */
       locale: {
-        type: String,
-        value: 'en'
-      },
-
-      /*
-       * The minumum allowable year
-       * @attribute minYear
-       * @type int
-       * @default 1900
-       */
-      minYear: {
-        type: Number,
-        value: 1900
-      },
-
-      /*
-       * The maximum allowable year
-       * @attribute maxYear
-       * @type int
-       * @default 2100
-       */
-      maxYear: {
-        type: Number,
-        value: 2100
+        type: String
       },
 
       /**
