@@ -2,17 +2,17 @@
   "name": "input-date-picker",
   "version": "1.0.1",
   "authors": [
-    "Anonymous <anonymous@example.com>"
+    "Zecat <jullienfelix@gmail.com>"
   ],
-  "description": "An element providing a solution to no problem in particular.",
+  "description": "This element bind a date-picker to a paper-input through a paper-dialog.",
   "keywords": [
     "web-component",
     "polymer",
     "seed"
   ],
   "main": "input-date-picker.html",
-  "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "license": "MIT",
+  "homepage": "https://github.com/Zecat/input-date-picker",
   "ignore": [
     "/.*",
     "/test/"
