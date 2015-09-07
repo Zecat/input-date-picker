@@ -13,7 +13,3 @@ The date-picker is a clone form [https://github.com/bendavis78/paper-date-picker
 ## Demo & Docs
 
 See the [component page](http://zecat.github.io/input-date-picker) for more information.
-
-#### TODO
-
-- add missing paper-date-picker's and paper-input's attributes
