@@ -40,13 +40,18 @@ Example:
         cursor:pointer;
       }
 
+      paper-dialog {
+        position: fixed;
+      }
+
     </style>
 
     <paper-input 
       readonly
       on-tap="_openDatePicker" 
       label="[[label]]"
-      value="[[dateFormat(date, format)]]">
+      value="[[dateFormat(date, format)]]"
+      disabled="[[disabled]]">
     </paper-input>
   
     <paper-dialog id="datePickerDialog" modal class="paper-date-picker-dialog">
@@ -116,6 +121,17 @@ Example:
         type: String,
         value: 'Date'
       },
+
+      /**
+       * Set to true to disable the input.
+       * @attribute label
+       * @type String
+       * @default 'Date'
+       */
+      disabled: {
+        type: Boolean,
+        value: false
+      }
 
     },
 
