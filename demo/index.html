@@ -15,6 +15,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <title>input-date-picker Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../input-date-picker.html">
+    <link rel="import" href="../../paper-dropdown-menu/paper-dropdown-menu.html">
+    <link rel="import" href="../../paper-menu/paper-menu.html">
+    <link rel="import" href="../../paper-item/paper-item.html">
   </head>
 
   <style is="custom-style">
@@ -35,28 +38,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <template is="dom-bind" id="scope">
         
-      <h4>Basic</h4>
-      <input-date-picker></input-date-picker>
+      <paper-dropdown-menu label="set locale & language" selected-item-label="{{locale}}">
+        <paper-menu class="dropdown-content">
+          <paper-item>fr</paper-item>
+          <paper-item>en</paper-item>
+          <paper-item>es</paper-item>
+        </paper-menu>
+      </paper-dropdown-menu>
 
-      <h4>With data binding: <span>{{dateFormat(date, 'LL')}}</span></h4>
-      <input-date-picker id="picker" date="{{date}}"></input-date-picker>
+      <h4>Default</h4>
+      <input-date-picker locale="[[locale]]"></input-date-picker>
 
-      <h4>With custom format, label and inital date </h4>
-      <input-date-picker label="Anniversary" format="L" date="2015-09-04"></input-date-picker>
+      <h4>Custom label</h4>
+      <input-date-picker min-date="2014-04-20" locale="[[locale]]" label="Anniversary"></input-date-picker>
+
+      <h4>Data binding with custom format: <span>{{date}}</span></h4>
+      <input-date-picker locale="[[locale]]" selected-date="{{date}}" selected-date-format="Do, dddd"></input-date-picker>
+
+      <h4>With initial date and custom input format </h4>
+      <input-date-picker locale="[[locale]]" input-date-format="L" set-date="2015-09-04"></input-date-picker>
 
       <h4>Disabled</h4>
-      <input-date-picker disabled></input-date-picker>
+      <input-date-picker locale="[[locale]]" disabled></input-date-picker>
 
     </template>
     
-    <script>
-
-      document.addEventListener('WebComponentsReady', function() {
-        var scope = Polymer.dom(document).querySelector('#scope');
-        scope.dateFormat = scope.$.picker.dateFormat;
-        scope.date = new Date();
-      });
-
-    </script>
   </body>
 </html>

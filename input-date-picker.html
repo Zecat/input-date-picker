@@ -41,6 +41,7 @@ Example:
       }
 
       paper-dialog {
+        /* Prevents the paper-dialog to be dependent on the size of its parent */        
         position: fixed;
       }
 
@@ -50,7 +51,7 @@ Example:
       readonly
       on-tap="_openDatePicker" 
       label="[[label]]"
-      value="[[dateFormat(date, format)]]"
+      value="[[dateFormat(setDate, inputDateFormat)]]"
       disabled="[[disabled]]">
     </paper-input>
   
@@ -58,7 +59,8 @@ Example:
       <paper-date-picker 
         id="datePicker" 
         locale="[[locale]]"
-        date="[[date]]">
+        date="{{setDate}}"
+        min-date="[[minDate]]">
       </paper-date-picker>
       <div class="buttons">
         <paper-button dialog-dismiss>Cancel</paper-button>
@@ -79,29 +81,56 @@ Example:
     properties: {
 
       /**
-       * The selected date (YYYY-MM-DD)
-       * @attribute date
-       * @type Date
-       * @default today's date
+       *  TODO : 
+       *    - change setDate type to String to allow every formats supported by momentjs
+       *    - refresh when locale change
        */
-      date: {
+      
+      /**
+       * Set the date (YYYY-MM-DD)
+       * @attribute setDate
+       * @type Date
+       */
+      setDate: {
         type: Date,
         notify: true
       },
 
       /**
+       * The selected date formatted with selectedDateFormat
+       * @attribute selectedDate
+       * @type String
+       */
+      selectedDate: {
+        type: String,
+        computed: 'dateFormat(setDate, selectedDateFormat)',
+        notify: true
+      },
+      
+      /**
+       * The format of selectedDate, cf. [momentjs](http://momentjs.com/)
+       * @attribute selectedDateFormat
+       * @type String,
+       * @default 'L'
+       */
+      selectedDateFormat: {
+        type: String,
+        value: 'L'
+      },
+
+      /**
        * The input's value date format, cf. [momentjs](http://momentjs.com/)
-       * @attribute format
+       * @attribute inputDateFormat
        * @type String
        * @default 'LL'
        */
-      format: {
+      inputDateFormat: {
         type: String,
         value: 'LL'
       },
 
       /**
-       * The current locale
+       * The date-picker's locale and language, must be the same on every input-date-picker.
        * @attribute locale
        * @type String
        * @default 'en'
@@ -123,10 +152,10 @@ Example:
       },
 
       /**
-       * Set to true to disable the input.
-       * @attribute label
-       * @type String
-       * @default 'Date'
+       * Set to true to disable the date-picker.
+       * @attribute disabled
+       * @type Boolean
+       * @default false
        */
       disabled: {
         type: Boolean,
