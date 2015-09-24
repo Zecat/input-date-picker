@@ -1,6 +1,6 @@
-paper-date-picker
+input-date-picker
 =================
-Material Design date picker, compatible with *Polymer 1.0*
+With *Polymer 1.0*
 
 This element bind a date-picker to a paper-input through a paper-dialog.
 
