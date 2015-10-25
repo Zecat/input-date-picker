@@ -26,7 +26,8 @@
     "paper-item": "PolymerElements/paper-item#~1.0.2",
     "paper-menu": "PolymerElements/paper-menu#~1.1.0",
     "polymer": "Polymer/polymer#^1.0.0",
-    "iron-form-element-behavior": "PolymerElements/iron-form-element-behavior#~1.0.5"
+    "iron-form-element-behavior": "PolymerElements/iron-form-element-behavior#~1.0.5",
+    "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#~1.0.5"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
