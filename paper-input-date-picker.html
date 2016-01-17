@@ -39,12 +39,16 @@ Example:
       }
 
       paper-input::content #input {
-        cursor:pointer;
+        cursor: pointer;
       }
 
       paper-dialog {
         /* Prevents the paper-dialog to be dependent on the size of its parent */        
         position: fixed;
+      }
+
+      paper-date-picker {
+        margin-top : 0;
       }
 
     </style>
@@ -58,8 +62,9 @@ Example:
     </paper-input>
   
     <paper-dialog id="datePickerDialog" modal class="paper-date-picker-dialog">
-      <paper-date-picker 
-        id="datePicker" 
+      <paper-date-picker
+        id="datePicker"
+        class="no-padding"
         locale="[[locale]]"
         date="{{setDate}}">
       </paper-date-picker>
