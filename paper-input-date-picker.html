@@ -7,11 +7,13 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../iron-form-element-behavior/iron-form-element-behavior.html">
 <link rel="import" href="../iron-validatable-behavior/iron-validatable-behavior.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-date-picker/paper-date-picker.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-styles/default-theme.html">
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../polymer/polymer.html">
 
@@ -51,6 +53,22 @@ Example:
         margin-top : 0;
       }
 
+      #headingBackgroundContinuance {
+        background: var(--default-primary-color);
+        width: 168px;
+        margin: 0;
+      }
+
+      #footer {
+        @apply(--layout-horizontal);
+        margin: 0;
+        padding: 0;
+      }
+
+      .buttons {
+        @apply(--layout-flex);
+      }
+
     </style>
 
     <paper-input 
@@ -68,9 +86,12 @@ Example:
         locale="[[locale]]"
         date="{{setDate}}">
       </paper-date-picker>
-      <div class="buttons">
-        <paper-button dialog-dismiss>Cancel</paper-button>
-        <paper-button dialog-confirm aufo-focus on-tap="_closeDatePicker">OK</paper-button>
+      <div id="footer">
+        <div id="headingBackgroundContinuance"></div>
+        <div class="buttons">
+          <paper-button dialog-dismiss>Cancel</paper-button>
+          <paper-button dialog-confirm aufo-focus on-tap="_closeDatePicker">OK</paper-button>
+        </div>
       </div>
     </paper-dialog>
   
