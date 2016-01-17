@@ -75,11 +75,12 @@ Example:
       readonly
       on-tap="_openDatePicker" 
       label="[[label]]"
-      value="[[dateFormat(setDate, inputDateFormat)]]"
+      value="[[value]]"
       disabled="[[disabled]]">
     </paper-input>
   
-    <paper-dialog id="datePickerDialog" modal class="paper-date-picker-dialog">
+    <paper-dialog id="datePickerDialog" modal class="paper-date-picker-dialog"
+      on-iron-overlay-closed="_overlayClosed">
       <paper-date-picker
         id="datePicker"
         class="no-padding"
@@ -90,7 +91,7 @@ Example:
         <div id="headingBackgroundContinuance"></div>
         <div class="buttons">
           <paper-button dialog-dismiss>Cancel</paper-button>
-          <paper-button dialog-confirm aufo-focus on-tap="_closeDatePicker">OK</paper-button>
+          <paper-button dialog-confirm aufo-focus>OK</paper-button>
         </div>
       </div>
     </paper-dialog>
@@ -114,7 +115,9 @@ Example:
        */
       
       /**
-       * Set the date (YYYY-MM-DD)
+       * Provide setDate to configure the initial date. This attribute 
+       * is bind to the date-picker's currently selected date. To get the 
+       * confirmed date, use 'value' attribute.
        * @attribute setDate
        * @type Date
        */
@@ -129,8 +132,7 @@ Example:
        * @type String
        */
       value: {
-        type: String,
-        computed: 'dateFormat(setDate, selectedDateFormat)',
+        type: String,        
         notify: true
       },
       
@@ -207,8 +209,10 @@ Example:
       this.$.datePickerDialog.open();
     },
 
-    _closeDatePicker: function() {
-      this.date = this.$.datePicker.date;
+    _overlayClosed: function(e) {
+      if (e.detail.confirmed) {
+        this.value = this.dateFormat(this.setDate, this.selectedDateFormat);
+      }
     }
 
   });
