@@ -1,0 +1,220 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-form-element-behavior/iron-form-element-behavior.html">
+<link rel="import" href="../iron-validatable-behavior/iron-validatable-behavior.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-date-picker/paper-date-picker.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-styles/default-theme.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../polymer/polymer.html">
+
+<script src="../moment/min/moment-with-locales.min.js"></script>
+
+<!--
+This element bind a [date-picker](https://github.com/bendavis78/paper-date-picker) to a paper-input through a paper-dialog.
+
+Example:
+
+    <paper-input-datepicker></paper-input-datepicker>
+
+@group Seed Elements
+@element paper-input-datepicker
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="paper-input-datepicker">
+  <template>
+
+    <style>
+
+      :host {
+        display: block;
+      }
+
+      paper-input::content #input {
+        cursor: pointer;
+      }
+
+      paper-dialog {
+        /* Prevents the paper-dialog to be dependent on the size of its parent */        
+        position: fixed;
+      }
+
+      paper-date-picker {
+        margin-top : 0;
+      }
+
+      #headingBackgroundContinuance {
+        background: var(--default-primary-color);
+        width: 168px;
+        margin: 0;
+      }
+
+      #footer {
+        @apply(--layout-horizontal);
+        margin: 0;
+        padding: 0;
+      }
+
+      .buttons {
+        @apply(--layout-flex);
+      }
+
+    </style>
+
+    <paper-input 
+      readonly
+      on-tap="_openDatePicker" 
+      label="[[label]]"
+      value="[[value]]"
+      disabled="[[disabled]]">
+    </paper-input>
+  
+    <paper-dialog id="datePickerDialog" modal class="paper-date-picker-dialog"
+      on-iron-overlay-closed="_overlayClosed">
+      <paper-date-picker
+        id="datePicker"
+        class="no-padding"
+        locale="[[locale]]"
+        date="{{setDate}}">
+      </paper-date-picker>
+      <div id="footer">
+        <div id="headingBackgroundContinuance"></div>
+        <div class="buttons">
+          <paper-button dialog-dismiss>Cancel</paper-button>
+          <paper-button dialog-confirm aufo-focus>OK</paper-button>
+        </div>
+      </div>
+    </paper-dialog>
+  
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'paper-input-datepicker',
+
+
+    properties: {
+
+      /**
+       *  TODO : 
+       *    - change setDate type to String to allow every formats supported by momentjs
+       *    - refresh when locale change
+       */
+      
+      /**
+       * Provide setDate to configure the initial date. This attribute 
+       * is bind to the date-picker's currently selected date. To get the 
+       * confirmed date, use 'value' attribute.
+       * @attribute setDate
+       * @type Date
+       */
+      setDate: {
+        type: Date,
+        notify: true
+      },
+
+      /**
+       * The selected date formatted with selectedDateFormat
+       * @attribute value
+       * @type String
+       */
+      value: {
+        type: String,        
+        notify: true
+      },
+      
+      /**
+       * The format of selectedDate, cf. [momentjs](http://momentjs.com/)
+       * @attribute selectedDateFormat
+       * @type String,
+       * @default 'L'
+       */
+      selectedDateFormat: {
+        type: String,
+        value: 'L'
+      },
+
+      /**
+       * The input's value date format, cf. [momentjs](http://momentjs.com/)
+       * @attribute inputDateFormat
+       * @type String
+       * @default 'LL'
+       */
+      inputDateFormat: {
+        type: String,
+        value: 'LL'
+      },
+
+      /**
+       * The date-picker's locale and language, must be the same on every paper-input-datepicker.
+       * @attribute locale
+       * @type String
+       * @default 'en'
+       */
+      locale: {
+        type: String,
+        value: 'en'
+      },
+
+      /**
+       * The label for the paper-input.
+       * @attribute label
+       * @type String
+       * @default 'Date'
+       */
+      label: {
+        type: String,
+        value: 'Date'
+      },
+
+      /**
+       * Set to true to disable the date-picker.
+       * @attribute disabled
+       * @type Boolean
+       * @default false
+       */
+      disabled: {
+        type: Boolean,
+        value: false
+      }
+
+    },
+
+    behaviors: [
+      Polymer.IronFormElementBehavior,
+      Polymer.IronValidatableBehavior
+    ],
+
+    dateFormat: function(date, format) {
+      if (!date) {
+        return '';
+      }
+      return moment(date).format(format);
+    },
+
+    _openDatePicker: function() {
+      this.$.datePickerDialog.open();
+    },
+
+    _overlayClosed: function(e) {
+      if (e.detail.confirmed) {
+        this.value = this.dateFormat(this.setDate, this.selectedDateFormat);
+      }
+    }
+
+  });
+
+</script>
