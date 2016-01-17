@@ -1,6 +1,6 @@
 {
-  "name": "paper-input-date-picker",
-  "version": "2.0.0",
+  "name": "paper-input-datepicker",
+  "version": "3.0.0",
   "authors": [
     "Zecat <jullienfelix@gmail.com>"
   ],
@@ -10,9 +10,9 @@
     "polymer",
     "seed"
   ],
-  "main": "paper-input-date-picker.html",
+  "main": "paper-input-datepicker.html",
   "license": "MIT",
-  "homepage": "https://github.com/Zecat/paper-input-date-picker",
+  "homepage": "https://github.com/Zecat/paper-input-datepicker",
   "ignore": [
     "/.*",
     "/test/"
