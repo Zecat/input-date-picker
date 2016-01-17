@@ -12,12 +12,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>input-date-picker Demo</title>
+    <title>paper-input-date-picker Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../../paper-dropdown-menu/paper-dropdown-menu.html">
     <link rel="import" href="../../paper-item/paper-item.html">
     <link rel="import" href="../../paper-menu/paper-menu.html">
-    <link rel="import" href="../input-date-picker.html">
+    <link rel="import" href="../paper-input-date-picker.html">
   </head>
 
   <style is="custom-style">
@@ -28,7 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-top: 40px;
     }
 
-    input-date-picker {
+    paper-input-date-picker {
       width: 200px;
     }
 
@@ -47,19 +47,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </paper-dropdown-menu>
 
       <h4>Default</h4>
-      <input-date-picker locale="[[locale]]"></input-date-picker>
+      <paper-input-date-picker locale="[[locale]]"></paper-input-date-picker>
 
       <h4>Custom label</h4>
-      <input-date-picker min-date="2014-04-20" locale="[[locale]]" label="Anniversary"></input-date-picker>
+      <paper-input-date-picker min-date="2014-04-20" locale="[[locale]]" label="Anniversary"></paper-input-date-picker>
 
       <h4>Data binding with custom format: <span>{{date}}</span></h4>
-      <input-date-picker locale="[[locale]]" value="{{date}}" selected-date-format="Do, dddd"></input-date-picker>
+      <paper-input-date-picker locale="[[locale]]" value="{{date}}" selected-date-format="Do, dddd"></paper-input-date-picker>
 
       <h4>With initial date and custom input format </h4>
-      <input-date-picker locale="[[locale]]" input-date-format="L" set-date="2015-09-04"></input-date-picker>
+      <paper-input-date-picker locale="[[locale]]" input-date-format="L" set-date="2015-09-04"></paper-input-date-picker>
 
       <h4>Disabled</h4>
-      <input-date-picker locale="[[locale]]" disabled></input-date-picker>
+      <paper-input-date-picker locale="[[locale]]" disabled></paper-input-date-picker>
 
     </template>
     

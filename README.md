@@ -1,4 +1,4 @@
-input-date-picker
+paper-input-date-picker
 =================
 With *Polymer 1.0*
 
